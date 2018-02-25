@@ -40,7 +40,7 @@ section.inner {
   transition: transform 1s;
 }
 
-.card figure {
+figure {
   margin: 0;
   display: block;
   position: absolute;
@@ -49,21 +49,22 @@ section.inner {
   backface-visibility: hidden;
 }
 
-.card .front {
+.front {
   background: red;
   border: 2px solid white;
   border-radius: 10px;
 }
-.card .back {
-  background-image: url("images/laughingWoman.jpg");
+.back {
+  background-image: url("http://lorempixel.com/120/120/people");
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   border: 2px solid white;
   border-radius: 10px;
   transform: rotateY( 180deg );
 }
 
-.card.flipped {
+.flipped {
   transform: rotateY( 180deg );
   backface-visibility: hidden;
 }
