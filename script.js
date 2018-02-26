@@ -1,24 +1,84 @@
-//jquery function to flip the tiles front to back
-  $("figure.front").click(function(){
-    $(this).parent().toggleClass("flipped");
-    return false
-  });
-//jquery function to flip the tiles back to front
-  $("div.content").click(function(){
-    $(this).children(".flipped").toggleClass("flipped");
-  })
-
 // build an array of images
 var numberOfTiles = 16;
 var numberOfImages = numberOfTiles/2;
+var numOfOpenedTiles = 0;
 var arrOfImages = buildImgArr(numberOfImages);
-
+var indicesOfOpenedTiles = [];
 // create a random order for the number of tiles and then build pairs
 var orderedArr = arrayOfTileNumbers();
 var shuffledArr = shuffle(orderedArr);
 var pairedArr = buildPairs(shuffledArr);
 placeImages(arrOfImages, pairedArr);
 
+
+// ****************************************************************************************
+// functions
+
+  //jquery function to flip the tiles front to back
+    $("figure.front").click(function(){
+      clearTimeout();
+      if(numOfOpenedTiles < 2){
+        $(this).parent().toggleClass("flipped");
+        numOfOpenedTiles = $(".flipped").length;
+        indicesOfOpenedTiles = arrIndexFlippedTiles(numOfOpenedTiles)
+        console.log("indices of opened tiles: " + indicesOfOpenedTiles);
+        $("#numOfFlippedTiles").text(numOfOpenedTiles);
+        if(numOfOpenedTiles === 2){
+          if(checkPairs()){
+            console.log("you did it")
+            console.log($(this));
+            matchedTiles();
+          } else {
+            closeTiles();
+          }
+        }
+      }
+      console.log(indicesOfOpenedTiles);
+    });
+
+// fill the array of the indices of the flipped tiles
+function arrIndexFlippedTiles(num){
+  if(num > 1) {
+    indicesOfOpenedTiles.push($("div.card").index($(".flipped").eq(1)));
+  } else if (num === 1){
+    indicesOfOpenedTiles.push($("div.card").index($(".flipped")));
+  }
+  if(indicesOfOpenedTiles[0] === indicesOfOpenedTiles[1]){
+    indicesOfOpenedTiles.pop();
+    indicesOfOpenedTiles.push($("div.card").index($(".flipped").eq(0)));
+  }
+  return indicesOfOpenedTiles;
+}
+// close tiles again because they are not equal
+function closeTiles(){
+  setTimeout(function(){
+    $(".flipped").toggleClass("flipped");
+    numOfOpenedTiles = $(".flipped").length;
+    $("#numOfFlippedTiles").text(numOfOpenedTiles);
+    indicesOfOpenedTiles = [];
+  },1000);
+}
+// check if opened tiles are a pair of equal cards
+function checkPairs(){
+  for(var i = 0; i < pairsArr.length; i++){
+    console.log(pairsArr[i]);
+    console.log(pairsArr[i].indexOf(indicesOfOpenedTiles[0])); console.log(pairsArr[i].indexOf(indicesOfOpenedTiles[1]));
+    if((pairsArr[i].indexOf(indicesOfOpenedTiles[0]) !== -1) && (pairsArr[i].indexOf(indicesOfOpenedTiles[1])!== -1)) {
+      return true;
+    }
+  }
+}
+
+// turn matching tiles into static images
+function matchedTiles(){
+  setTimeout(function(){
+    $("div.flipped").children().remove();
+    $("div.flipped").removeClass("flipped");
+    numOfOpenedTiles = $(".flipped").length;
+    $("#numOfFlippedTiles").text(numOfOpenedTiles);
+    indicesOfOpenedTiles = [];
+  },1000);
+}
 // place images on the back of the tiles
 function placeImages(arrOfImages, pairedArr){
   for(var i = 0; i < arrOfImages.length; i++){
@@ -75,3 +135,4 @@ function buildPairs(arr){
 }
 console.log(pairsArr);
 console.log(arrOfImages);
+console.log(numOfOpenedTiles);
