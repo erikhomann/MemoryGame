@@ -31,7 +31,7 @@ header h1 {
 header p {
   padding: 10px;
   display: inline-block;
-  width: 49.6%;
+  width: 40%;
   border: 1px solid white;
   border-radius: 10px;
   margin-bottom: 0;
@@ -39,11 +39,11 @@ header p {
 }
 
 header p span {
+  padding: 0 5px;
   color: black;
   background-color: white;
   border-radius: 10px;
   display: inline-block;
-  width: 20%;
 }
 
 .box {

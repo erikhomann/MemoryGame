@@ -1,3 +1,43 @@
+/****************************************
+  timer
+****************************************/
+
+var seconds = 0, minutes = 0, hours = 0,
+    t;
+
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+
+    $(".timer").text((hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
+
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}
+timer();
+
+/* Stop button */
+function stopTimer(){
+    clearTimeout(t);
+}
+
+/* Clear button */
+// clear.onclick = function() {
+//     h1.textContent = "00:00:00";
+//     seconds = 0; minutes = 0; hours = 0;
+// }
+
+
 // build an array of images
 var numberOfTiles = 16;
 var numberOfImages = numberOfTiles/2;
@@ -17,6 +57,7 @@ placeImages(arrOfImages, pairedArr);
 $( "body" ).on("click", ".btn-primary", function() {
     location.reload(true);
 });
+
 
 // ****************************************************************************************
 // functions
@@ -89,6 +130,8 @@ function matchedTiles(){
     countOfPairs += 1;
     $("#countOfPairs").text(countOfPairs);
     if(countOfPairs === numberOfImages){
+      stopTimer();
+      $(".timer").text((hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
       $("#winningPic").attr("src", choosePic());
       $('#exampleModalCenter').modal("show");
     }
