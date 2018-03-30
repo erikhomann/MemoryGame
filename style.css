@@ -17,10 +17,33 @@ section.inner {
   margin: auto
 }
 
+header {
+  border-radius: 10px;
+  background-color: #8789C0;
+  text-align: center;
+  color: #F4FAFF;
+}
+
+header h1 {
+  padding: 10px;
+}
+
 header p {
+  padding: 10px;
   display: inline-block;
-  width: 49%;
+  width: 49.6%;
   border: 1px solid white;
+  border-radius: 10px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+header p span {
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  display: inline-block;
+  width: 20%;
 }
 
 .box {
@@ -98,18 +121,6 @@ div.matched {
   border-radius: 10px;
 }
 
-header {
-  border: 2px #8789C0 solid;
-  border-radius: 10px;
-  background-color: #8789C0;
-  text-align: center;
-  color: #F4FAFF;
-}
-
 .fitWidth {
   width: 100%;
-}
-
-.jumbotron .btn {
-  margin-top: 20px;
 }
