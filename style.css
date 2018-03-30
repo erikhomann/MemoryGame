@@ -17,6 +17,12 @@ section.inner {
   margin: auto
 }
 
+header p {
+  display: inline-block;
+  width: 49%;
+  border: 1px solid white;
+}
+
 .box {
   position: relative;
   width: 25%;
