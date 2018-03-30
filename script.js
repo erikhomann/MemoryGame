@@ -8,15 +8,23 @@ var indicesOfOpenedTiles = [];
 var orderedArr = arrayOfTileNumbers();
 var shuffledArr = shuffle(orderedArr);
 var pairedArr = buildPairs(shuffledArr);
+var countOfTries = 0;
+var countOfPairs = 0;
+var username = prompt("What is your name?");
+$(".playersName").text(username);
 placeImages(arrOfImages, pairedArr);
 
+$( "body" ).on("click", ".btn-primary", function() {
+    location.reload(true);
+});
 
 // ****************************************************************************************
 // functions
 
   //jquery function to flip the tiles front to back
     $("figure.front").click(function(){
-      clearTimeout();
+      countOfTries += 1;
+      $(".countOfTries").text(countOfTries);
       if(numOfOpenedTiles < 2){
         $(this).parent().toggleClass("flipped");
         numOfOpenedTiles = $(".flipped").length;
@@ -73,12 +81,33 @@ function checkPairs(){
 function matchedTiles(){
   setTimeout(function(){
     $("div.flipped").children().remove();
+    $("div.flipped").append($("<div class=\"matched\"></div>"));
     $("div.flipped").removeClass("flipped");
     numOfOpenedTiles = $(".flipped").length;
     $("#numOfFlippedTiles").text(numOfOpenedTiles);
     indicesOfOpenedTiles = [];
+    countOfPairs += 1;
+    $("#countOfPairs").text(countOfPairs);
+    if(countOfPairs === numberOfImages){
+      $("#winningPic").attr("src", choosePic());
+      $('#exampleModalCenter').modal("show");
+    }
   },1000);
 }
+// winning animation
+function choosePic(){
+  if (countOfTries>40){
+    thePic = "images/idiot.jpg";
+  } else if (countOfTries>30){
+    thePic = "images/beginner.jpg";
+  } else if (countOfTries>26){
+    thePic = "images/nerd.jpg";
+  } else {
+    thePic = "images/superhero.png";
+  }
+  return thePic;
+}
+
 // place images on the back of the tiles
 function placeImages(arrOfImages, pairedArr){
   for(var i = 0; i < arrOfImages.length; i++){
@@ -133,6 +162,3 @@ function buildPairs(arr){
   }
   return pairsArr;
 }
-console.log(pairsArr);
-console.log(arrOfImages);
-console.log(numOfOpenedTiles);

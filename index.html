@@ -6,150 +6,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Malar" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Hello, world!</title>
   </head>
   <body>
     <section class="outer">
-      <header>
-        <h1>Erik's Memory Game</h1>
-        <p>name</p>
-        <p>number of tries</p>
-        <p>number of pairs</p>
-        <p>number of flipped tiles: <span id="numOfFlippedTiles">0</span></p>
-      </header>
+
       <section class="inner">
+        <header>
+          <h1>Erik's Memory Game</h1>
+          <p>player: <span class="playersName">?</span></p>
+          <p>number of tries: <span class="countOfTries">0</span></p>
+          <p>number of pairs: <span id="countOfPairs">0</span></p>
+        </header>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
         <div class="box">
           <div class="content">
               <div class="card">
-                <figure class="front">1</figure>
-                <figure class="back">2</figure>
+                <figure class="front"></figure>
+                <figure class="back"></figure>
               </div>
           </div>
         </div>
       </section>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Good job, <span class="playersName"></span>!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>You needed <span class="countOfTries"></span> tries to win Erik's Memory Game.</p>
+            <p>With this score you probably look like this:</p>
+            <img id="winningPic" class="fitWidth" src="#"></img>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Try again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
