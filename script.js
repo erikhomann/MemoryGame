@@ -32,10 +32,15 @@ function stopTimer(){
 }
 
 /* Clear button */
-// clear.onclick = function() {
-//     h1.textContent = "00:00:00";
+// $(".btn-default").click(function() {
+//     $(".timer").text("00:00:00");
 //     seconds = 0; minutes = 0; hours = 0;
-// }
+//     timer;
+//     $(".countOfTries").text(0);
+//     countOfTries = 0;
+//     $("#countOfPairs").text(0);
+//     countOfPairs = 0;
+// });
 
 
 // build an array of images
@@ -57,6 +62,9 @@ placeImages(arrOfImages, pairedArr);
 $( "body" ).on("click", ".btn-primary", function() {
     location.reload(true);
 });
+$( "body" ).on("click", ".btn-default", function() {
+    location.reload(true);
+});
 
 
 // ****************************************************************************************
@@ -65,6 +73,7 @@ $( "body" ).on("click", ".btn-primary", function() {
   //jquery function to flip the tiles front to back
     $("figure.front").click(function(){
       countOfTries += 1;
+      rating();
       $(".countOfTries").text(countOfTries);
       if(numOfOpenedTiles < 2){
         $(this).parent().toggleClass("flipped");
@@ -132,19 +141,22 @@ function matchedTiles(){
     if(countOfPairs === numberOfImages){
       stopTimer();
       $(".timer").text((hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds));
-      $("#winningPic").attr("src", choosePic());
+      $("#winningPic").attr("src", rating());
       $('#exampleModalCenter').modal("show");
     }
   },1000);
 }
 // winning animation
-function choosePic(){
+function rating(){
   if (countOfTries>40){
     thePic = "images/idiot.jpg";
+    $("#firstStar").hide();
   } else if (countOfTries>30){
     thePic = "images/beginner.jpg";
+    $("#secondStar").hide();
   } else if (countOfTries>26){
     thePic = "images/nerd.jpg";
+    $("#thirdStar").hide();
   } else {
     thePic = "images/superhero.png";
   }

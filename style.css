@@ -46,6 +46,10 @@ header p span {
   display: inline-block;
 }
 
+header button {
+  width: 40%;
+}
+
 .box {
   position: relative;
   width: 25%;
